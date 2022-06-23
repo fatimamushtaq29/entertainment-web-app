@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3001/api/media';
+const baseUrl = '/api/media';
 
 async function getAll() {
   const response = await axios.get(baseUrl);
