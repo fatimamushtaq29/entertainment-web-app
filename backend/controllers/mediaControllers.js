@@ -11,14 +11,6 @@ const getAllMedia = asyncHandler(async (req, res) => {
   res.json(allMedia);
 });
 
-/*  @description     Get One Media
-    @route           GET /api/media/:id
-    @access          Public     */
-// const getOneMedia = asyncHandler(async (req, res) => {
-//   const oneMedia = await Media.findById(req.params.id).populate('bookmarks');
-//   res.json(oneMedia);
-// });
-
 /*  @description     Update the bookmarked status
     @route           PATCH /api/media/:id
     @access          Private    */
@@ -59,6 +51,5 @@ const updateMedia = asyncHandler(async (req, res) => {
 
 module.exports = {
   getAllMedia,
-  // getOneMedia,
   updateMedia,
 };
