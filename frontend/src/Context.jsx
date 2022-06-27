@@ -11,6 +11,7 @@ function ContextProvider(props) {
     localStorage.getItem('token')
   );
   const [userBookmarks, setUserBookmarks] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     if (currentToken) {
@@ -102,6 +103,7 @@ function ContextProvider(props) {
       media: mediaId,
       user: loggedInUser._id,
     };
+    setIsLoading(true)
     const response = await dataServices.update(mediaId, newBookmark);
     setSiteData((prevData) =>
       prevData.map((item) => {
@@ -125,6 +127,7 @@ function ContextProvider(props) {
             ),
           ];
     });
+    setIsLoading(false)
   }
 
   function setToken() {
@@ -149,6 +152,7 @@ function ContextProvider(props) {
         logout,
         userBookmarks,
         doesBookmarkExist,
+        isLoading
       }}
     >
       {props.children}

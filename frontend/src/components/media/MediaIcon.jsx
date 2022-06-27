@@ -7,10 +7,12 @@ import { ReactComponent as IconBookmarkFull } from '../../images/icon-bookmark-f
 import { useNavigate } from 'react-router-dom';
 
 export default function MediaIcon({ mediaArray, TRENDING, mediaType }) {
-  const navigate = useNavigate()
-  const { userBookmarks, doesBookmarkExist, toggleBookmark } =
+  const navigate = useNavigate();
+  const { userBookmarks, doesBookmarkExist, toggleBookmark, isLoading } =
     useContext(Context);
-  const bookmarkClasses = 'absolute top-2 right-2';
+  const bookmarkClasses = `absolute top-2 right-2 stroke-[1.5px] ${
+    isLoading && 'pointer-events-none'
+  }`;
   const aspectRatioClasses =
     mediaType === TRENDING
       ? 'aspect-[1.71] sm:aspect-[2.04]'
@@ -40,17 +42,25 @@ export default function MediaIcon({ mediaArray, TRENDING, mediaType }) {
           <div
             style={{ backgroundImage: imageUrl }}
             className={`group relative bg-cover bg-center-center rounded-lg
-                    bg-black/0 hover:bg-black/50 hover:bg-blend-multiply transition duration-[250ms] ${aspectRatioClasses}`}
+                    bg-black/0 hover:bg-black/50 hover:bg-blend-multiply ${
+                      isLoading ? 'cursor-wait' : 'cursor-pointer'
+                    } transition duration-[250ms] ${aspectRatioClasses}`}
           >
             {isBookmarked ? (
               <IconBookmarkFull
-                className={bookmarkClasses}
-                onClick={() => toggleBookmark(_id, navigate)}
+                className={`${bookmarkClasses} group-bookmarkfull`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleBookmark(_id, navigate);
+                }}
               />
             ) : (
               <IconBookmarkEmpty
-                className={bookmarkClasses}
-                onClick={() => toggleBookmark(_id, navigate)}
+                className={`${bookmarkClasses} hover:stroke-[2px]`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleBookmark(_id, navigate);
+                }}
               />
             )}
             <PlayButton />

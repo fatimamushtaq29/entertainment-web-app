@@ -8,7 +8,7 @@ import { Context } from '../Context';
 export default function SectionContainer({ headingText, mediaType }) {
   const TRENDING = 'trending';
   const { searchTerm, isThereSearchTerm } = useIsThereSearchTerm();
-  const { getMediaTypeArray } = useContext(Context);
+  const { getMediaTypeArray, isLoading } = useContext(Context);
   const mediaArray = !isThereSearchTerm
     ? getMediaTypeArray(mediaType)
     : getMediaTypeArray(mediaType, searchTerm);
@@ -20,7 +20,7 @@ export default function SectionContainer({ headingText, mediaType }) {
       'grid grid-flow-col auto-cols-[clamp(15rem,_1.2834rem_+_58.5242vw,_29.375rem)] gap-[clamp(1rem,-0.4313rem+6.1069vw,2.5rem)] overflow-x-auto scrollbar px-[clamp(1rem,0.5229rem+2.0356vw,1.5rem)] md:px-[clamp(1.5rem,0.6429rem+1.7857vw,2.25rem)] xl:auto-cols-[clamp(26rem,-1.0000rem+33.7500vw,29.375rem)] 1xl:auto-cols-[clamp(29.375rem,2.8571rem+29.4643vw,50rem)]';
   }
   return (
-    <div className="space-y-6">
+    <div className={`space-y-6 ${isLoading && 'cursor-wait'}`}>
       <Heading
         headingText={
           isThereSearchTerm
