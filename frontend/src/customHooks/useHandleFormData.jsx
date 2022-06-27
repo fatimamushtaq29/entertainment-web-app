@@ -70,6 +70,7 @@ export default function useHandleFormData(
   const formInputElements = Object.keys(formData).map((input) => (
     <FormInput key={input}>
       <input
+        type={(input === 'email' || input === 'password') ? input : 'password'}
         ref={input === 'email' ? focusRef : null}
         className="bg-transparent w-full pb-[18px] text-[15px] font-light
                     leading-tight text-white indent-4 caret-red border-b border-greyishBlue 

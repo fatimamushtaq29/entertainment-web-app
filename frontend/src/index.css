@@ -7,6 +7,12 @@
     min-height: 100vh;
 }
 
+:-webkit-autofill,
+:-webkit-autofill:hover, 
+:-webkit-autofill:focus {
+  @apply rounded-md;
+}
+
 @layer base {
     html {
       font-family: 'Outfit', sans-serif;
