@@ -29,7 +29,7 @@ This is a full-stack application with Login and Sign Up pages
 
 ### Links
 
-- Live Site URL: [https://mediamemory.herokuapp.com/](https://mediamemory.herokuapp.com/)
+- Live Site URL: [https://mediamemory.up.railway.app/](https://mediamemory.up.railway.app/)
 
 ## My process
 
